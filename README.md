@@ -45,6 +45,7 @@ Merge an SDTM domain's non-standard variables onto the domain. The macro looks i
 
 /* A domain read from another library, retaining intermediate datasets */
 %merge_nsv(inlib=sdtmv4, domain=LB, outdset=work.lb1, debug=Y);
+```
 
 ### Behaviour worth knowing
 
