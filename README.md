@@ -4,5 +4,5 @@ mergeNSV is a SAS package with one macro, %merge_nsv(), that merges the non-stan
 The package has no dependency on any other macro or package.
 ### This repository is an adapted version of Saikrishnareddy Yengannagari’s original package [https://github.com/kusy2009/mergeNSV] tailored for the SAS Package Framework, and the original license remains the property of Saikrishnareddy Yengannagari.
 
-![Uploading mergeNSV.png…]()
-<img width="180" height="180" alt="mergeNSV_small" src="https://github.com/user-attachments/assets/0ce840a8-611e-4492-bbd1-d27ddc071e09" />
+
+<img width="240" height="240" alt="mergeNSV_small" src="https://github.com/user-attachments/assets/0ce840a8-611e-4492-bbd1-d27ddc071e09" />
