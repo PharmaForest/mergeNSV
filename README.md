@@ -45,3 +45,22 @@ Merge an SDTM domain's non-standard variables onto the domain. The macro looks i
 
 /* A domain read from another library, retaining intermediate datasets */
 %merge_nsv(inlib=sdtmv4, domain=LB, outdset=work.lb1, debug=Y);
+
+### Behaviour worth knowing
+
+- **SUPP--** (vertical; one row per value) may link records to the parent using different IDVARs. Each distinct IDVAR is transposed and merged as its own group. IDVARVAL is converted to the type of its linked parent variable. Rows with a blank IDVAR (for example, DM) link by `STUDYID` and `USUBJID` alone. Only populated QVAL rows are used. `QNAM`, `QLABEL`, `QVAL`, `IDVAR`, `IDVARVAL`, and `RDOMAIN` do not reach the output.
+
+- **NS--** (horizontal; one row per parent record) merges without a transpose. IDVAR is read from the data, so both a split domain such as `NSFAMH` keyed by `FASEQ` and a domain with a null IDVAR such as `NSDM` are handled. IDVARVLN is renamed onto the parent key. `RDOMAIN`, `IDVAR`, and `IDVARVLN` are dropped as linkage metadata.
+
+- A study carries one representation. If both exist, NS-- is used and an `ALERT` is written. A representation with no populated values counts as absent.
+
+- Rows that do not match a parent record are not merged. They are counted, reported as an `ALERT`, and retained in `work._nsv_orph<n>` for SUPP-- or `work._nsv_orphan` for NS-- when `debug=Y`. A non-unique key in NS-- is also reported as an `ALERT`, because the merge repeats the parent record.
+
+- The macro merges non-standard variables only; it does not perform a subject-level merge.
+
+Author: Saikrishnareddy Yengannagari  
+Latest update date: 2026-10-05
+
+## License
+
+This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/kusy2009/mergeNSV/blob/main/LICENSE) file for details.
